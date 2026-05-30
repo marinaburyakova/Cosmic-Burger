@@ -4,7 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-   base: '/https://github.com/marinaburyakova/Cosmic-Burger/',
+  //  base: '/https://github.com/marinaburyakova/Cosmic-Burger/',
   server: {
     port: 3000,
     open: true,
