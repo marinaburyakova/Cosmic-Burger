@@ -1,0 +1,257 @@
+/* Глобальное отключение горизонтального скролла для родительских контейнеров */
+.ingredientCard {
+  background: #131316;
+  display: flex;
+  min-height: 235px;
+  border-radius: 20px;
+  border: 1px dashed #4c4cff;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.1s ease;
+  animation: borderPulse 2s ease-in-out infinite;
+  /* Предотвращаем выход за пределы */
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px 10px;
+}
+
+@keyframes borderPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 10px rgba(255, 0, 255, 0.3);
+  }
+}
+
+.addButton {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #4c4cff;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  /* Предотвращаем проблемы с overflow */
+  flex-shrink: 0;
+}
+
+.addButton:hover {
+  transform: scale(1.1);
+  background: #801ab3;
+}
+
+/* Исправлен селектор с дефисом на camelCase */
+.ingredientCard:hover {
+  transform: scale(0.98);
+}
+
+.ingredientImg {
+  position: relative;
+  width: 240px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Предотвращаем переполнение */
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* Решение для картинки */
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  /* Предотвращаем выход за пределы */
+  display: block;
+}
+
+.counterBadge {
+  position: absolute;
+  top: 28px;
+  left: 20px;
+  background: #a7169a;
+  border-radius: 16px;
+  width: 22px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Iceland";
+  font-size: 28px;
+  color: #f2f2f3;
+}
+
+.ingredientPrice {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0;
+  font-family: "Iceland";
+  font-size: 28px;
+  color: #f2f2f3;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ingredientName {
+  font-family: "JetBrains Mono";
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #f2f2f3;
+  max-width: 200px;
+  /* Предотвращаем переполнение текста */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  padding: 0 8px;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .ingredientName {
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 160px;
+  }
+
+  .ingredientImg {
+    width: 180px;
+    height: 100px;
+  }
+
+  .ingredientPrice {
+    font-size: 24px;
+    gap: 4px;
+  }
+
+  .counterBadge {
+    width: 22px;
+    height: 22px;
+    font-size: 20px;
+    top: 6px;
+    left: 0px;
+  }
+
+  .addButton {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    bottom: 8px;
+    right: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .ingredientImg {
+    width: 140px;
+    height: 80px;
+  }
+
+  .ingredientName {
+    font-size: 12px;
+    max-width: 140px;
+  }
+
+  .ingredientPrice {
+    font-size: 20px;
+  }
+
+  .counterBadge {
+    width: 24px;
+    height: 24px;
+    font-size: 20px;
+  }
+}
+
+/* Убираем горизонтальный скролл у родительских контейнеров */
+/* Эти стили нужно добавить глобально или в родительском компоненте */
+:global(.ingredients-grid),
+:global(.constructor-section),
+:global(.constructor-list) {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Для grid контейнера ингредиентов */
+:global(.ingredients-grid) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  overflow-x: hidden;
+}
+
+@media (max-width: 480px) {
+  :global(.ingredients-grid) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  :global(.ingredients-grid) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Уважение к настройкам reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ingredientCard {
+    animation: none;
+    transition: none;
+  }
+
+  .addButton {
+    transition: none;
+  }
+
+  .addButton:hover {
+    transform: none;
+  }
+
+  .ingredientCard:hover {
+    transform: none;
+  }
+}
+
+/* Для устройств с touch */
+@media (hover: none) and (pointer: coarse) {
+  .addButton:active {
+    transform: scale(0.95);
+    background: #801ab3;
+  }
+
+  .ingredientCard:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Высокая контрастность */
+@media (prefers-contrast: high) {
+  .ingredientCard {
+    border: 2px solid #4c4cff;
+  }
+
+  .addButton {
+    border: 2px solid white;
+  }
+}

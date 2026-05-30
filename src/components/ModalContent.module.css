@@ -1,0 +1,296 @@
+/* Базовые стили (десктоп версия) */
+.modal-inner {
+  color: #f2f2f3;
+}
+
+.modal-title {
+  font-family: "JetBrains Mono";
+  font-size: 28px;
+  margin-bottom: 24px;
+  text-align: center;
+  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modal-stats {
+  background: #131316;
+  border: 1px dashed #4c4cff;
+  border-radius: 40px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-family: "JetBrains Mono";
+  font-size: 16px;
+  border-bottom: 1px solid #2f2f37;
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  color: #8585ad;
+}
+
+.stat-value {
+  color: #f2f2f3;
+  font-weight: 700;
+}
+
+.modal-features {
+  margin: 24px 0;
+}
+
+.modal-features h3 {
+  font-family: "JetBrains Mono";
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #4c4cff;
+}
+
+.modal-features ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.modal-features li {
+  padding: 8px 0 8px 24px;
+  position: relative;
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  color: #f2f2f3;
+}
+
+.modal-features li:before {
+  content: "🍔";
+  position: absolute;
+  left: 0;
+}
+
+.modal-note-p {
+  text-align: center;
+  font-size: 12px;
+  color: #8585ad;
+  margin-top: 20px;
+  font-family: "JetBrains Mono";
+}
+
+/* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
+
+/* Планшеты (до 768px) */
+@media (max-width: 768px) {
+  .modal-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .modal-stats {
+    border-radius: 30px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .stat-item {
+    padding: 6px 0;
+    font-size: 14px;
+  }
+
+  .modal-features {
+    margin: 20px 0;
+  }
+
+  .modal-features h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .modal-features li {
+    padding: 6px 0 6px 24px;
+    font-size: 13px;
+  }
+
+  .modal-note-p {
+    font-size: 11px;
+    margin-top: 16px;
+  }
+}
+
+/* Мобильные телефоны (до 480px) */
+@media (max-width: 480px) {
+
+   .modal-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .modal-stats {
+    border-radius: 24px;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+
+  .stat-item {
+    padding: 5px 0;
+    font-size: 13px;
+  }
+
+  .modal-features {
+    margin: 16px 0;
+  }
+
+  .modal-features h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .modal-features li {
+    padding: 5px 0 5px 22px;
+    font-size: 12px;
+  }
+
+  .modal-features li:before {
+    font-size: 12px;
+  }
+
+  .modal-note-p {
+    font-size: 10px;
+    margin-top: 14px;
+  }
+}
+
+/* Очень маленькие экраны (до 350px) */
+@media (max-width: 350px) {
+  .modal-title {
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+
+  .modal-stats {
+    border-radius: 20px;
+    padding: 12px;
+    margin-bottom: 14px;
+  }
+
+  .stat-item {
+    padding: 4px 0;
+    font-size: 12px;
+  }
+
+  .modal-features {
+    margin: 14px 0;
+  }
+
+  .modal-features h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .modal-features li {
+    padding: 4px 0 4px 20px;
+    font-size: 11px;
+  }
+
+  .modal-features li:before {
+    font-size: 11px;
+  }
+
+  .modal-note-p {
+    font-size: 9px;
+    margin-top: 12px;
+  }
+}
+
+/* Альбомная ориентация на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .modal-stats {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .modal-features {
+    margin: 12px 0;
+  }
+
+  .modal-features ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  }
+
+  .modal-features li {
+    padding: 4px 0 4px 20px;
+  }
+}
+
+/* Улучшенная адаптация для горизонтального скролла */
+@media (max-width: 480px) and (orientation: landscape) {
+  .modal-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-item {
+    border-bottom: none;
+    padding: 4px 0;
+  }
+}
+
+/* Для устройств с высоким разрешением экрана */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .modal-title {
+    font-weight: 600;
+  }
+
+  .modal-stats {
+    border-width: 0.5px;
+  }
+}
+
+/* Для экранов с небольшой высотой */
+@media (max-height: 600px) {
+  .modal-stats {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+
+  .modal-features {
+    margin: 12px 0;
+  }
+
+  .modal-features ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  }
+
+  .modal-features li {
+    padding: 3px 0 3px 20px;
+  }
+
+  .modal-note {
+    margin-top: 10px;
+  }
+}
+
+/* Плавные переходы для всех устройств */
+@media (prefers-reduced-motion: no-preference) {
+  .modal-stats,
+  .modal-features li {
+    transition: all 0.2s ease;
+  }
+}
+
+/* Для устройств с сенсорным экраном */
+@media (hover: none) and (pointer: coarse) {
+  .stat-item:active {
+    background: rgba(76, 76, 255, 0.1);
+  }
+}

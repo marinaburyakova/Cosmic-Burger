@@ -1,0 +1,466 @@
+/* Базовые стили (десктоп версия) */
+.ordermodalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.ordermodalContent {
+  background: linear-gradient(135deg, #1c1c21 0%, #2a2a35 100%);
+  border: 2px solid #4c4cff;
+  border-radius: 60px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  animation: slideInScale 0.3s ease-out;
+  box-shadow: 0 10px 40px rgba(76, 76, 255, 0.3);
+}
+
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.orderSuccess {
+  text-align: center;
+}
+
+.successAnimation {
+  margin-bottom: 24px;
+}
+
+.successCheckmark {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #00cc88 0%, #00ffaa 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #fff;
+  animation: checkmarkPop 0.5s ease-out;
+  box-shadow: 0 0 20px rgba(0, 204, 136, 0.5);
+}
+
+@keyframes checkmarkPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.orderTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  font-weight: bold;
+   margin-bottom: 24px;
+}
+
+.orderNumber {
+  background: #131316;
+  border-radius: 40px;
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px dashed #4c4cff;
+}
+
+.ordernumberLabel {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #8585ad;
+  margin-bottom: 8px;
+}
+
+.ordernumberValue {
+  font-family: 'Iceland', monospace;
+  font-size: 48px;
+  font-weight: bold;
+  color: #4c4cff;
+  letter-spacing: 2px;
+}
+
+.orderinfoMessage {
+  background: #131316;
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.orderinfoMessage p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #f2f2f3;
+  margin: 8px 0;
+}
+
+.orderStatus {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #4c4cff;
+  background: rgba(76, 76, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin: 8px 0;
+}
+
+.orderinfoMessage small {
+  display: inline-block;
+  font-family: 'Iceland', monospace;
+  font-size: 20px;
+  color: #f2f2f3;
+  margin-top: 8px;
+}
+
+.autocloseMessage {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #8585ad;
+  padding: 8px;
+  border-top: 1px solid #2f2f37;
+  margin-top: 8px;
+}
+
+/* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
+
+/* Планшеты (до 768px) */
+@media (max-width: 768px) {
+  .ordermodalOverlay {
+    padding: 16px;
+  }
+
+  .ordermodalContent {
+    padding: 30px;
+    max-width: 450px;
+    border-radius: 50px;
+  }
+
+  .successCheckmark {
+    width: 70px;
+    height: 70px;
+    font-size: 42px;
+  }
+
+  .orderTitle {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .orderNumber {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .ordernumberValue {
+    font-size: 42px;
+  }
+
+  .orderinfoMessage {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .orderinfoMessage p {
+    font-size: 13px;
+  }
+
+  .orderinfoMessage small {
+    font-size: 18px;
+  }
+}
+
+/* Мобильные телефоны (до 480px) */
+@media (max-width: 480px) {
+  .ordermodalOverlay {
+    padding: 12px;
+  }
+
+  .ordermodalContent {
+    padding: 24px 20px;
+    max-width: 95%;
+    border-radius: 40px;
+  }
+
+  .successAnimation {
+    margin-bottom: 16px;
+  }
+
+  .successCheckmark {
+    width: 60px;
+    height: 60px;
+    font-size: 36px;
+  }
+
+  .orderTitle {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .orderNumber {
+    padding: 14px;
+    margin-bottom: 16px;
+    border-radius: 30px;
+  }
+
+  .ordernumberLabel {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .ordernumberValue {
+    font-size: 36px;
+  }
+
+  .orderinfoMessage {
+    padding: 14px;
+    margin-bottom: 16px;
+    border-radius: 24px;
+  }
+
+  .orderinfoMessage p {
+    font-size: 12px;
+    margin: 6px 0;
+  }
+
+  .orderStatus {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .orderinfoMessage small {
+    font-size: 16px;
+  }
+
+  .autocloseMessage {
+    font-size: 11px;
+    padding: 6px;
+  }
+}
+
+/* Очень маленькие экраны (до 350px) */
+@media (max-width: 350px) {
+  .ordermodalOverlay {
+    padding: 8px;
+  }
+
+  .ordermodalContent {
+    padding: 20px 16px;
+    border-radius: 32px;
+  }
+
+  .successCheckmark {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .orderTitle {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .orderNumber {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 24px;
+  }
+
+  .ordernumberLabel {
+    font-size: 11px;
+  }
+
+  .ordernumberValue {
+    font-size: 32px;
+  }
+
+  .orderinfoMessage {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 20px;
+  }
+
+  .orderinfoMessage p {
+    font-size: 11px;
+    margin: 5px 0;
+  }
+
+  .orderStatus {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .orderinfoMessage small {
+    font-size: 14px;
+  }
+
+  .autocloseMessage {
+    font-size: 10px;
+  }
+}
+
+/* Альбомная ориентация на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .ordermodalOverlay {
+    padding: 10px;
+  }
+
+  .ordermodalContent {
+    padding: 20px;
+    max-width: 80%;
+  }
+
+  .successCheckmark {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .orderTitle {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .orderNumber {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .ordernumberValue {
+    font-size: 36px;
+  }
+
+  .orderinfoMessage {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .orderinfoMessage p {
+    font-size: 11px;
+    margin: 4px 0;
+  }
+
+  .autocloseMessage {
+    font-size: 10px;
+  }
+}
+
+/* Для устройств с сенсорным экраном */
+@media (hover: none) and (pointer: coarse) {
+  .ordermodalContent:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Для экранов с небольшой высотой */
+@media (max-height: 600px) {
+  .ordermodalContent {
+    padding: 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .successCheckmark {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .orderTitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .orderNumber {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .ordernumberValue {
+    font-size: 28px;
+  }
+
+  .orderinfoMessage {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .orderinfoMessage p {
+    font-size: 11px;
+    margin: 4px 0;
+  }
+
+  .autocloseMessage {
+    font-size: 10px;
+  }
+}
+.progressBar {
+  width: 100%;
+  height: 3px;
+  background: #2a2a35;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4c4cff, #801ab3);
+  transition: width 16ms linear;
+  border-radius: 3px;
+}
+
+/* Анимация для автозакрытия */
+@keyframes progressBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@media (max-width: 480px) {
+  .progressBar {
+    height: 2px;
+  }
+}
+/* Стилизация скроллбара для мобильных */
+@media (max-width: 480px) {
+  .ordermodalContent::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .ordermodalContent::-webkit-scrollbar-track {
+    background: #131316;
+    border-radius: 10px;
+  }
+
+  .ordermodalContent::-webkit-scrollbar-thumb {
+    background: #4c4cff;
+    border-radius: 10px;
+  }
+}

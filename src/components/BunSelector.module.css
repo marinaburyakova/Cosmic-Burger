@@ -1,0 +1,505 @@
+.selector-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+  padding: 16px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.selector-content {
+  background: #1c1c21;
+  border-radius: 24px;
+  padding: 20px;
+  width: 400px;
+  max-width: 100%;
+  animation: slideUp 0.2s ease-out;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.selector-title {
+  font-size: 20px;
+  font-family: "JetBrains Mono", monospace;
+  color: #f2f2f3;
+  margin: 0;
+}
+
+.selector-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #8585ad;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 8px;
+  margin: -8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.selector-close:hover {
+  color: #f2f2f3;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.selector-close:active {
+  transform: scale(0.95);
+}
+
+.buns-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Кастомный скроллбар */
+.buns-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.buns-list::-webkit-scrollbar-track {
+  background: #2a2a35;
+  border-radius: 3px;
+}
+
+.buns-list::-webkit-scrollbar-thumb {
+  background: #4c4cff;
+  border-radius: 3px;
+}
+
+.bun-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #2a2a35;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover только для десктопов */
+@media (hover: hover) and (pointer: fine) {
+  .bun-item:hover {
+    background: #323240;
+    transform: translateX(4px);
+  }
+}
+
+/* Touch-фидбек для мобильных */
+@media (hover: none) and (pointer: coarse) {
+  .bun-item:active {
+    background: #323240;
+    transform: scale(0.98);
+  }
+}
+
+.bun-item.selected {
+  border-color: #4c4cff;
+  background: #323240;
+}
+
+.bun-item-image {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.bun-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.bun-item-name {
+  font-size: 14px;
+  font-family: "JetBrains Mono", monospace;
+  color: #f2f2f3;
+  margin-bottom: 4px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.bun-item-price {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-family: "Iceland", monospace;
+  font-size: 18px;
+  color: #f2f2f3;
+}
+
+.check-mark {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4c4cff;
+  font-size: 20px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.selector-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cancel-button,
+.select-button {
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-size: 14px;
+  font-family: "JetBrains Mono", monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  min-height: 44px;
+  font-weight: 500;
+}
+
+.cancel-button {
+  background: #2a2a35;
+  color: #8585ad;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cancel-button:hover {
+    background: #323240;
+    color: #f2f2f3;
+  }
+}
+
+.cancel-button:active {
+  transform: scale(0.96);
+}
+
+.select-button {
+  background: linear-gradient(135deg, #4c4cff 0%, #6e6eff 100%);
+  color: white;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .select-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(76, 76, 255, 0.3);
+  }
+}
+
+.select-button:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.select-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========== АДАПТАЦИЯ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ ========== */
+
+/* Стандартные мобильные (до 480px) */
+@media (max-width: 480px) {
+  .selector-overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .selector-content {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 16px;
+    animation: slideUpMobile 0.3s ease-out;
+  }
+
+  @keyframes slideUpMobile {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .selector-header {
+    margin-bottom: 12px;
+  }
+
+  .selector-title {
+    font-size: 18px;
+  }
+
+  .selector-close {
+    font-size: 22px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .buns-list {
+    max-height: 320px;
+    gap: 10px;
+  }
+
+  .bun-item {
+    padding: 14px 12px;
+    gap: 12px;
+  }
+
+  .bun-item-image {
+    width: 44px;
+    height: 44px;
+  }
+
+  .bun-item-name {
+    font-size: 13px;
+  }
+
+  .bun-item-price {
+    font-size: 16px;
+  }
+
+  .check-mark {
+    right: 10px;
+    font-size: 18px;
+  }
+
+  .selector-footer {
+    gap: 10px;
+  }
+
+  .cancel-button,
+  .select-button {
+    padding: 12px 20px;
+    font-size: 14px;
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/* Маленькие телефоны (iPhone SE, iPhone 5, до 380px) */
+@media (max-width: 380px) {
+  .selector-overlay {
+    padding: 8px;
+  }
+
+  .selector-content {
+    padding: 14px;
+  }
+
+  .selector-title {
+    font-size: 16px;
+  }
+
+  .selector-close {
+    font-size: 20px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .buns-list {
+    max-height: 360px;
+    gap: 8px;
+  }
+
+  .bun-item {
+    padding: 10px 10px;
+    gap: 10px;
+  }
+
+  .bun-item-image {
+    width: 36px;
+    height: 36px;
+  }
+
+  .bun-item-name {
+    font-size: 12px;
+  }
+
+  .bun-item-price {
+    font-size: 14px;
+  }
+
+  .bun-item-price svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .check-mark {
+    right: 8px;
+    font-size: 16px;
+  }
+
+  .cancel-button,
+  .select-button {
+    padding: 10px 16px;
+    font-size: 13px;
+    min-height: 40px;
+  }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 320px) {
+  .selector-content {
+    padding: 12px;
+  }
+
+  .selector-title {
+    font-size: 15px;
+  }
+
+  .bun-item {
+    padding: 8px 8px;
+    gap: 8px;
+  }
+
+  .bun-item-image {
+    width: 32px;
+    height: 32px;
+  }
+
+  .bun-item-name {
+    font-size: 11px;
+  }
+
+  .bun-item-price {
+    font-size: 13px;
+  }
+
+  .check-mark {
+    right: 6px;
+    font-size: 14px;
+  }
+
+  .cancel-button,
+  .select-button {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+}
+
+/* Для устройств с сенсорным экраном - увеличиваем область касания */
+@media (hover: none) and (pointer: coarse) {
+  .bun-item {
+    padding: 14px 12px;
+  }
+
+  .selector-close {
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .cancel-button,
+  .select-button {
+    min-height: 48px;
+  }
+}
+
+/* Уважение к настройкам reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .selector-overlay {
+    animation: none;
+  }
+
+  .selector-content {
+    animation: none;
+  }
+
+  .bun-item {
+    transition: none;
+  }
+}
+
+/* Альбомная ориентация на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .selector-overlay {
+    align-items: center;
+  }
+
+  .selector-content {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .buns-list {
+    max-height: 280px;
+  }
+
+  .selector-content {
+    border-radius: 24px;
+  }
+}
+
+/* Для темной темы (уже есть, но добавим улучшения) */
+@media (prefers-color-scheme: dark) {
+  .selector-content {
+    background: #1c1c21;
+  }
+
+  .bun-item {
+    background: #2a2a35;
+  }
+}
+
+/* Высокая контрастность */
+@media (prefers-contrast: high) {
+  .selector-content {
+    border: 2px solid #4c4cff;
+  }
+
+  .bun-item.selected {
+    border-width: 3px;
+  }
+
+  .select-button {
+    border: 1px solid white;
+  }
+}

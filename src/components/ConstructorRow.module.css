@@ -1,0 +1,708 @@
+/* CSS Variables для легкого переопределения тем */
+:root {
+  --bg-primary: #1c1c21;
+  --bg-top-bun: #a17738;
+  --bg-bottom-bun: #382308;
+  --border-color: #4c4cff;
+  --border-color-hover: #6e6eff;
+  --text-primary: #f2f2f3;
+  --text-secondary: #8585ad;
+  --hover-bg: rgba(76, 76, 255, 0.1);
+  --shadow-default: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 8px 24px rgba(76, 76, 255, 0.2);
+  --border-radius-lg: 88px;
+  --border-radius-md: 40px;
+  --border-radius-sm: 24px;
+  --border-radius-xs: 16px;
+  --transition-default: all 0.2s ease;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Глобальное отключение горизонтального скролла для всего приложения */
+:global(body) {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Базовые стили drag-handle */
+.drag-handle {
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-default);
+  flex-shrink: 0;
+}
+
+/* Стили для десктопов при hover */
+@media (hover: hover) and (pointer: fine) {
+  .drag-handle:hover {
+    opacity: 0.8;
+  }
+  
+  .drag-handle:active {
+    cursor: grabbing;
+  }
+}
+
+/* Стили для touch-устройств */
+@media (hover: none) and (pointer: coarse) {
+  .drag-handle:active {
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+}
+
+/* Основной контейнер строки конструктора */
+.constructor-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-primary);
+  padding: 16px 24px;
+  border-radius: var(--border-radius-lg) var(--border-radius-md) var(--border-radius-md) var(--border-radius-lg);
+  border: 1px dashed var(--border-color);
+  transition: var(--transition-default);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Стиль для верхней булки - цвет как у настоящей булки */
+.row-top {
+  background: var(--bg-top-bun);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) var(--border-radius-md) var(--border-radius-md);
+  border: 1px dashed var(--border-color);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Семечки на верхней булке */
+.row-top::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  right: 20px;
+  height: 15px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f5e6d3 0px,
+    #f5e6d3 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  opacity: 0.6;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Стиль для нижней булки - чуть темнее */
+.row-bottom {
+  background: var(--bg-bottom-bun);
+  border-radius: var(--border-radius-md) var(--border-radius-md) var(--border-radius-lg) var(--border-radius-lg);
+  border: 1px dashed var(--border-color);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Стиль для начинок */
+.constructor-row:not(.row-top):not(.row-bottom) {
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+}
+
+/* Состояние при перетаскивании */
+.constructor-row.dragging {
+  cursor: grabbing;
+  opacity: 0.8;
+  transform: scale(1.02);
+  box-shadow: var(--shadow-default);
+  transition: var(--transition-smooth);
+}
+
+/* Состояние при сортировке */
+.constructor-row.sorting {
+  transition: transform 0.2s ease;
+}
+
+/* Hover эффект для десктопов - БЕЗ СДВИГОВ */
+@media (hover: hover) and (pointer: fine) {
+  .constructor-row:hover {
+    border-color: var(--border-color-hover);
+    /* Без transform: translateX() */
+    transform: none;
+    box-shadow: var(--shadow-hover);
+  }
+  
+  /* Добавляем только подсветку */
+  .row-top:hover {
+    background: #e0b06e;
+  }
+  
+  .row-bottom:hover {
+    background: #d4a259;
+  }
+  
+  .constructor-row:not(.row-top):not(.row-bottom):hover {
+    background: #252530;
+  }
+}
+
+/* Анимация появления при перестановке */
+@keyframes dragItem {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.9;
+    box-shadow: var(--shadow-hover);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Анимация для нового элемента */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Класс для анимации добавления - НЕ вызываем скролл */
+.constructor-row-new {
+  animation: slideIn 0.3s ease;
+}
+
+/* Уважение к настройкам reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .constructor-row,
+  .remove-btn,
+  .drag-handle,
+  .constructor-row-new {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  @keyframes dragItem {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes slideIn {
+    from, to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .constructor-row:hover {
+    transform: none;
+  }
+}
+
+/* Контейнер изображения */
+.row-image {
+  width: 80px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Изображение ингредиента */
+.menu-item {
+  max-height: 50px;
+  max-width: 100px;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  transition: var(--transition-default);
+}
+
+/* Hover эффект для изображения - только масштаб внутри контейнера */
+@media (hover: hover) and (pointer: fine) {
+  .menu-item:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Название ингредиента */
+.row-name {
+  flex: 1;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  color: var(--text-primary);
+  word-break: break-word;
+  transition: var(--transition-default);
+  overflow: hidden;
+  white-space: normal;
+  min-width: 0;
+}
+
+/* Цена ингредиента */
+.row-price {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-family: 'Iceland', monospace;
+  font-size: 28px;
+  color: var(--text-primary);
+  flex-shrink: 0;
+  transition: var(--transition-default);
+}
+
+/* Улучшенные стили для кнопки удаления */
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  margin: -8px;
+  border-radius: 50%;
+  transition: var(--transition-default);
+  color: var(--text-primary);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* Hover для десктопов */
+@media (hover: hover) and (pointer: fine) {
+  .remove-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background-color: var(--hover-bg);
+  }
+}
+
+/* Active состояние */
+.remove-btn:active {
+  transform: scale(0.95);
+}
+
+/* Фокус для клавиатурной навигации */
+.remove-btn:focus-visible {
+  outline: 2px solid var(--border-color);
+  outline-offset: 2px;
+  opacity: 1;
+  background-color: var(--hover-bg);
+}
+
+/* Touch-фидбек для мобильных устройств */
+@media (hover: none) and (pointer: coarse) {
+  .remove-btn:active {
+    opacity: 1;
+    transform: scale(0.95);
+    background-color: var(--hover-bg);
+  }
+}
+
+/* Плейсхолдер для заблокированных элементов (булки) */
+.lock-placeholder {
+  width: 24px;
+  flex-shrink: 0;
+}
+
+/* Skeleton loading state */
+.constructor-row-loading {
+  background: linear-gradient(90deg, var(--bg-primary) 25%, #2c2c31 50%, var(--bg-primary) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ========== ОБЩИЙ КОНТЕЙНЕР ДЛЯ ПРЕДОТВРАЩЕНИЯ СКРОЛЛА ========== */
+/* Родительский контейнер для всего конструктора */
+:global(.constructor-section),
+:global(.constructor-list),
+:global(.fillings-scroll) {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Контейнер для скролла начинок - только вертикальный скролл */
+:global(.fillings-scroll) {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 300px);
+}
+
+/* Скрываем скроллбар но оставляем функционал (опционально) */
+:global(.fillings-scroll)::-webkit-scrollbar {
+  width: 8px;
+}
+
+:global(.fillings-scroll)::-webkit-scrollbar-track {
+  background: #2f2f37;
+  border-radius: 4px;
+}
+
+:global(.fillings-scroll)::-webkit-scrollbar-thumb {
+  background: #8585ad;
+  border-radius: 4px;
+}
+
+:global(.fillings-scroll)::-webkit-scrollbar-thumb:hover {
+  background: #4c4cff;
+}
+
+/* ========== АДАПТИВНОСТЬ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ ========== */
+
+/* Планшеты */
+@media (max-width: 768px) {
+  .constructor-row {
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  
+  .row-name {
+    font-size: 14px;
+  }
+  
+  .row-price {
+    font-size: 20px;
+    gap: 4px;
+  }
+  
+  .row-image {
+    width: 60px;
+    height: 32px;
+  }
+  
+  .drag-handle {
+    transform: scale(0.9);
+  }
+}
+
+/* Мобильные устройства (стандартные) */
+@media (max-width: 480px) {
+  .constructor-row {
+    gap: 10px;
+    padding: 12px;
+  }
+  
+  /* Начинки - одинаковый радиус со всех сторон */
+  .constructor-row:not(.row-top):not(.row-bottom) {
+    border-radius: var(--border-radius-sm);
+  }
+  
+  .row-name {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    word-break: break-word;
+  }
+  
+  .row-price {
+    font-size: 16px;
+    color: var(--border-color);
+    gap: 4px;
+  }
+  
+  .row-image {
+    width: 50px;
+    height: 28px;
+  }
+  
+  .menu-item {
+    max-height: 35px;
+    max-width: 60px;
+  }
+  
+  .drag-handle {
+    transform: scale(0.8);
+  }
+  
+  .remove-btn {
+    padding: 6px;
+    margin: -6px;
+  }
+  
+  /* Булки на мобильных */
+  .row-top {
+    border-radius: 60px 60px 24px 24px;
+  }
+  
+  .row-bottom {
+    border-radius: 24px 24px 60px 60px;
+  }
+  
+  /* Убираем семечки на мобильных */
+  .row-top::before {
+    display: none;
+  }
+}
+
+/* Маленькие мобильные устройства (iPhone SE, iPhone 5, etc) */
+@media (max-width: 380px) {
+  .constructor-row {
+    gap: 8px;
+    padding: 10px 8px;
+  }
+  
+  .row-name {
+    font-size: 11px;
+    letter-spacing: 0.03em;
+  }
+  
+  .row-price {
+    font-size: 14px;
+    gap: 2px;
+  }
+  
+  .row-price svg {
+    transform: scale(0.9);
+  }
+  
+  .row-image {
+    width: 40px;
+    height: 24px;
+  }
+  
+  .menu-item {
+    max-height: 30px;
+    max-width: 50px;
+  }
+  
+  .drag-handle {
+    transform: scale(0.7);
+  }
+  
+  .drag-handle svg {
+    transform: scale(0.9);
+  }
+  
+  .remove-btn {
+    padding: 4px;
+    margin: -4px;
+  }
+  
+  .remove-btn svg {
+    transform: scale(0.9);
+  }
+  
+  .lock-placeholder {
+    width: 20px;
+  }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 320px) {
+  .constructor-row {
+    gap: 6px;
+    padding: 8px 6px;
+  }
+  
+  .row-name {
+    font-size: 10px;
+  }
+  
+  .row-price {
+    font-size: 12px;
+  }
+  
+  .row-image {
+    width: 35px;
+    height: 20px;
+  }
+  
+  .menu-item {
+    max-height: 25px;
+    max-width: 40px;
+  }
+  
+  .drag-handle {
+    transform: scale(0.6);
+  }
+  
+  .remove-btn svg {
+    transform: scale(0.8);
+  }
+}
+
+/* Горизонтальная ориентация на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .constructor-row {
+    padding: 8px 12px;
+  }
+  
+  .row-image {
+    width: 45px;
+    height: 25px;
+  }
+  
+  .menu-item {
+    max-height: 30px;
+  }
+  
+  .row-name {
+    font-size: 12px;
+  }
+  
+  .row-price {
+    font-size: 16px;
+  }
+  
+}
+
+
+/* ========== ДОСТУПНОСТЬ И ТЕМЫ ========== */
+
+/* Темная тема (базовая) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1c1c21;
+    --bg-top-bun: #d4a259;
+    --bg-bottom-bun: #695020;
+    --border-color: #4c4cff;
+    --text-primary: #f2f2f3;
+  }
+}
+
+/* Светлая тема */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-primary: #ffffff;
+    --bg-top-bun: #b4893a;
+    --bg-bottom-bun: #ad7828;
+    --border-color: #4c4cff;
+    --text-primary: #1c1c21;
+    --hover-bg: rgba(76, 76, 255, 0.05);
+  }
+  .drag-handle {
+    display: block;
+    color: #4c4cff;
+  }
+  .constructor-row {
+    display: flex;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .constructor-row:hover {
+    background: #f5f5f5;
+  }
+  
+  .row-top:hover {
+    background: #f0c878 !important;
+  }
+  
+  .row-bottom:hover {
+    background: #e6b86e !important;
+  }
+}
+
+/* Высокая контрастность для accessibility */
+@media (prefers-contrast: high) {
+  .constructor-row {
+    border: 2px solid var(--border-color);
+  }
+  
+  .row-top,
+  .row-bottom {
+    border-width: 2px;
+  }
+  
+  .remove-btn:focus-visible {
+    outline: 3px solid var(--border-color);
+    outline-offset: 3px;
+  }
+  
+  .constructor-row:hover {
+    border-width: 2px;
+  }
+}
+
+/* RTL (Right-to-Left) поддержка */
+[dir="rtl"] .constructor-row {
+  border-radius: var(--border-radius-md) var(--border-radius-lg) var(--border-radius-lg) var(--border-radius-md);
+}
+
+[dir="rtl"] .row-top {
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) var(--border-radius-md) var(--border-radius-md);
+}
+
+[dir="rtl"] .row-bottom {
+  border-radius: var(--border-radius-md) var(--border-radius-md) var(--border-radius-lg) var(--border-radius-lg);
+}
+
+/* Стили для печати */
+@media print {
+  .constructor-row {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+    background: white;
+  }
+  
+  .drag-handle,
+  .remove-btn,
+  .lock-placeholder {
+    display: none;
+  }
+  
+  .row-top::before {
+    display: none;
+  }
+}
+
+/* Анимация для фокуса */
+@keyframes focusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 76, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(76, 76, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 76, 255, 0);
+  }
+}
+
+/* Стиль для элемента в фокусе (для accessibility) */
+.constructor-row:focus-within {
+  animation: focusPulse 1s ease-out;
+}
+
+/* Утилиты для отладки */
+.debug .constructor-row {
+  outline: 1px solid red;
+}
