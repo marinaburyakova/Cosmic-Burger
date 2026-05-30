@@ -1,0 +1,531 @@
+.auth-container {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card {
+  background: #1c1c21;
+  border: 2px solid #4c4cff;
+  border-radius: 40px;
+  padding: 48px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-card-h2 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 28px;
+  color: #f2f2f3;
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 40px;
+}
+
+.auth-card {
+  margin-bottom: 20px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+
+.auth-card-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: #131316;
+  border: 2px solid #4c4cff;
+  border-radius: 40px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  color: #f2f2f3;
+}
+
+.auth-card-button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+  border: none;
+  border-radius: 64px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  color: #f2f2f3;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 24px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: #8585ad;
+}
+
+.auth-switch-button {
+  background: none;
+  border: none;
+  color: #4c4cff;
+  cursor: pointer;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.error-message {
+  background: rgba(255, 100, 100, 0.2);
+  border: 1px solid #ff6464;
+  border-radius: 40px;
+  padding: 12px;
+  color: #ff6464;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 16px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+/* Profile Styles */
+.profile-container {
+  max-width: 1200px;
+  margin: 48px auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 40px;
+}
+
+.profile-sidebar {
+  width: 300px;
+  background: #1c1c21;
+  border: 2px solid #4c4cff;
+  border-radius: 40px;
+  padding: 32px 24px;
+  height: fit-content;
+}
+
+.profile-avatar {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.profile-avatar-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #4c4cff;
+  margin-bottom: 16px;
+}
+
+.profile-avatar-h3 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+  color: #f2f2f3;
+  margin-bottom: 8px;
+}
+
+.profile-avatar-p {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: #8585ad;
+}
+.profile-sidebar {
+  padding: 16px;
+}
+
+.profile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-nav-btn {
+  background: transparent;
+  border: none;
+  padding: 12px 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  color: #8585ad;
+  cursor: pointer;
+  border-radius: 40px;
+  transition: all 0.3s;
+  text-align: left;
+}
+
+.profile-nav-btn:hover {
+  background: rgba(76, 76, 255, 0.1);
+  color: #f2f2f3;
+}
+
+.profile-nav-btn.active {
+  background: #4c4cff;
+  color: #f2f2f3;
+}
+
+.profile-nav-btn.logout {
+  margin-top: 16px;
+  border-top: 1px solid #2f2f37;
+  border-radius: 0;
+  color: #ff6464;
+}
+
+.profile-nav-btn.logout:hover {
+  background: rgba(255, 100, 100, 0.1);
+}
+
+.profile-content {
+  flex: 1;
+  background: #1c1c21;
+  border: 2px solid #4c4cff;
+  border-radius: 40px;
+  padding: 32px;
+}
+
+.profile-content h2 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 28px;
+  color: #f2f2f3;
+  margin-bottom: 32px;
+}
+.info-field {
+  font-size: 12px;
+}
+.info-field {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #131316;
+  border-radius: 40px;
+}
+
+.info-field label {
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: #8585ad;
+  margin-bottom: 8px;
+}
+
+.info-field p {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+  color: #f2f2f3;
+}
+
+.save-btn {
+  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+  border: none;
+  color: #f2f2f3;
+}
+
+.edit-btn {
+  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+  border: none;
+  color: #f2f2f3;
+}
+
+.edit-form {
+  margin-bottom: 20px;
+}
+
+.edit-form input {
+  width: 100%;
+  padding: 12px 16px;
+  background: #131316;
+  border: 2px solid #4c4cff;
+  border-radius: 40px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  color: #f2f2f3;
+}
+
+.edit-btn,
+.save-btn,
+.cancel-btn {
+  padding: 12px 24px;
+  border-radius: 64px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-right: 12px;
+}
+/* Scrollbar для ленты */
+.orders-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.orders-list::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+
+.orders-list::-webkit-scrollbar-thumb {
+  background: #8585ad;
+  border-radius: 4px;
+}
+
+/* Mini order card styles */
+.order-card-mini {
+  background: #131316;
+  border-radius: 40px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  transition: transform 0.2s;
+}
+
+.order-card-mini:hover {
+  transform: translateX(-4px);
+}
+
+.order-card-mini .order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.order-card-mini .order-id {
+  font-family: "Iceland", cursive;
+  font-size: 20px;
+  color: #f2f2f3;
+}
+
+.order-card-mini .order-status {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.order-card-mini .order-status.done {
+  background: rgba(0, 204, 204, 0.2);
+  color: #00cccc;
+}
+
+.order-card-mini .order-status.pending {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.order-card-mini .order-name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: #f2f2f3;
+  margin-bottom: 12px;
+}
+
+.order-card-mini .order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-card-mini .order-date {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: #8585ad;
+}
+
+.order-card-mini .order-price {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-family: "Iceland", cursive;
+  font-size: 20px;
+  color: #f2f2f3;
+}
+.order-card-mini .order-id {
+  font-size: 14px;
+}
+
+.order-card-mini .order-name {
+  font-size: 11px;
+}
+
+.order-card-mini .order-price {
+  font-size: 14px;
+}
+
+.profile-nav-btn {
+  font-size: 10px;
+  padding: 6px 10px;
+}
+
+.profile-content {
+  padding: 16px;
+}
+
+.profile-content h2 {
+  font-size: 18px;
+}
+
+/* Profile Settings Styles */
+.profile-settings {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  gap: 32px;
+  
+}
+h2, h3 {
+  color: #f2f2f3;
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 0 12px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  background: linear-gradient(135deg, #ffffff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.settings-group {
+  background: #131316;
+  border-radius: 40px;
+  padding: 24px;
+}
+
+.settings-group h3 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+  color: #f2f2f3;
+  margin-bottom: 16px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: #8585ad;
+  cursor: pointer;
+}
+
+.setting-item input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #4c4cff;
+}
+
+.theme-select,
+.language-select {
+  width: 100%;
+  padding: 12px 16px;
+  background: #1c1c21;
+  border: 2px solid #4c4cff;
+  border-radius: 40px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: #f2f2f3;
+  cursor: pointer;
+}
+
+  .theme-option {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+    border: none;
+  }
+.danger-zone {
+  background: rgba(255, 100, 100, 0.1);
+  border: 2px solid #ff6464;
+  border-radius: 40px;
+  padding: 24px;
+}
+
+.danger-zone h3 {
+  color: #ff6464;
+  margin-bottom: 16px;
+}
+
+.delete-account-btn {
+  background: transparent;
+  border: 2px solid #ff6464;
+  border-radius: 64px;
+  padding: 12px 24px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: #ff6464;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.delete-account-btn:hover {
+  background: #ff6464;
+  color: #f2f2f3;
+}
+
+/* Мобильные стили для профиля */
+@media (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .profile-sidebar {
+    width: 100%;
+    padding: 24px;
+  }
+
+  .profile-avatar img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .profile-nav-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .profile-content {
+    padding: 20px;
+  }
+
+  .profile-content h2 {
+    font-size: 20px;
+  }
+
+  .info-field p {
+    font-size: 14px;
+  }
+
+  .theme-selector {
+    flex-direction: column;
+  }
+
+}
+
+/* Мобильные стили для ленты заказов */
+@media (max-width: 768px) {
+  .order-feed-layout {
+    flex-direction: column;
+  }
+
+  .orders-stats {
+    width: 100%;
+  }
+
+  .order-card {
+    padding: 16px;
+  }
+
+  .order-name {
+    font-size: 16px;
+  }
+
+  .order-id {
+    font-size: 18px;
+  }
+
+  .order-time {
+    font-size: 12px;
+  }
+}

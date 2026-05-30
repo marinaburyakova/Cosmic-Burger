@@ -1,0 +1,1423 @@
+/* Анимация при удалении (опционально) */
+.filling-item-exit {
+  animation: slideOut 0.2s ease-in forwards;
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+/* Классы анимаций */
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-bounce {
+  animation: bounce 0.5s ease;
+}
+
+.animate-pulse {
+  animation: pulse 0.3s ease-in-out;
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+.animate-float {
+  animation: float 2s ease-in-out infinite;
+}
+
+.animate-rotate-in {
+  animation: rotateIn 0.4s ease-out;
+}
+
+/* Пульсирующая кнопка */
+@keyframes btnPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(76, 76, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(76, 76, 255, 0);
+  }
+}
+
+.btn-pulse {
+  animation: btnPulse 1s ease-in-out;
+}
+
+/* Пустое состояние */
+@keyframes emptyStatePulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+}
+
+.empty-state-animation {
+  animation: emptyStatePulse 2s ease-in-out infinite;
+}
+
+/* Волшебная анимация при добавлении */
+@keyframes magicSparkle {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  animation: magicSparkle 0.6s ease-out forwards;
+}
+
+/* Анимации для TransitionGroup */
+.fade-enter {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 300ms ease-out;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 300ms ease-in;
+}
+
+/* Анимации для добавления/удаления начинок */
+.filling-item {
+  transition: all 0.3s ease;
+}
+
+.fade-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.fade-out {
+  animation: slideOut 0.2s ease-in forwards;
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+/* Анимация для пустого конструктора */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.sparkle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: magicSparkle 0.6s ease-out forwards;
+  z-index: 9999;
+}
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #131316;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-btn {
+  margin-left: auto;
+}
+
+.main-layout {
+  width: 100%;
+  max-width: 1400px;
+  margin: 48px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 24px;
+}
+
+.ingredients-section {
+  flex: 1;
+  min-width: 540px;
+  max-width: 600px;
+  background: #131316;
+  border: 2px solid #4c4cff;
+  padding: 20px 0 0 0;
+  position: relative;
+  height: 912px;
+  display: flex;
+  flex-direction: column;
+}
+.constructor-section {
+  flex: 1;
+  min-width: 540px;
+  max-width: 600px;
+  background: #131316;
+  border: 2px solid #4c4cff;
+  padding: 20px 16px 32px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 912px;
+}
+.main-title {
+  font-family: "JetBrains Mono";
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+  line-height: 40px;
+  color: #f2f2f3;
+  padding: 0 16px;
+  margin-bottom: 20px;
+}
+.tabs {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #2f2f37;
+  margin-bottom: 24px;
+}
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 16px 0;
+  font-family: "JetBrains Mono";
+  font-size: 16px;
+  color: #8585ad;
+  cursor: pointer;
+  border-bottom: 1px solid #2f2f37;
+}
+.active-tab {
+  color: #f2f2f3;
+  border-bottom: 2px solid #4c4cff;
+  box-shadow: inset 0px -2px 0px #4c4cff;
+}
+.ingredients-scroll {
+  overflow-y: auto;
+  padding: 0 16px 20px;
+  flex: 1;
+}
+.category-title {
+  font-family: "JetBrains Mono";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #f2f2f3;
+  margin: 32px 0 24px 0;
+}
+
+/* constructor styles */
+.constructor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.fillings-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 460px;
+  overflow-y: auto;
+}
+.empty-fillings-mobile {
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  background: linear-gradient(135deg, #ffffff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.total-price {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+.price-digit {
+  font-family: "Iceland";
+  font-size: 48px;
+  line-height: 36px;
+  color: #f2f2f3;
+}
+.order-btn {
+  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+  border-radius: 64px;
+  padding: 20px 40px;
+  font-family: "JetBrains Mono";
+  font-size: 16px;
+  color: #f2f2f3;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0px 0px 16px 8px rgba(51, 51, 255, 0.25);
+  margin-top: 15px;
+}
+.order-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.cancel-btn {
+  background: transparent;
+  border: 2px solid #8585ad;
+  color: #8585ad;
+}
+
+.order-warning {
+  background: rgba(255, 100, 100, 0.2);
+  border: 1px solid #ff6464;
+  border-radius: 40px;
+  padding: 12px;
+  margin: 20px 0;
+  color: #ff6464;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  text-align: center;
+}
+
+.order-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.order-cancel-btn,
+.order-submit-btn,
+.order-close-btn {
+  flex: 1;
+  padding: 16px;
+  border-radius: 64px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.order-cancel-btn {
+  background: transparent;
+  border: 2px solid #8585ad;
+  color: #8585ad;
+}
+
+.order-cancel-btn:hover {
+  border-color: #4c4cff;
+  color: #4c4cff;
+}
+
+.order-submit-btn,
+.order-close-btn {
+  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+  border: none;
+  color: #f2f2f3;
+}
+
+.order-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.order-submit-btn:hover:not(:disabled),
+.order-close-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 0px 16px 8px rgba(51, 51, 255, 0.25);
+}
+
+.order-info-message p {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+  color: #f2f2f3;
+  margin-bottom: 8px;
+}
+
+.order-info-message small {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: #8585ad;
+}
+
+.order-time {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  color: #8585ad;
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.order-name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f2f2f3;
+}
+
+.order-ingredients {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ingredient-preview {
+  width: 64px;
+  height: 64px;
+  background: #131316;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ingredient-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.more-ingredients {
+  position: relative;
+}
+
+.dim-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1c1c21;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dim-overlay span {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  color: #f2f2f3;
+  z-index: 1;
+}
+
+/* Stats Styles */
+.orders-stats {
+  width: 580px;
+}
+
+.stats-board {
+  display: flex;
+  gap: 36px;
+  background: #1c1c21;
+  border: 2px dashed #4c4cff;
+  border-radius: 40px;
+  padding: 24px;
+}
+
+.stats-column {
+  flex: 1;
+}
+
+.stats-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f2f2f3;
+  margin-bottom: 24px;
+}
+
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stats-number {
+  font-family: "Iceland", cursive;
+  font-size: 28px;
+  color: #f2f2f3;
+}
+
+.stats-number.done {
+  color: #00cccc;
+}
+
+.stats-empty {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: #8585ad;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Стили для табов */
+.tabs {
+  display: flex;
+  width: 100%;
+  gap: 0;
+  margin-bottom: 24px;
+  background: #131316;
+  border-bottom: 1px solid #2f2f37;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 16px 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: none;
+  color: #8585ad;
+  position: relative;
+}
+
+.tab:hover {
+  color: #f2f2f3;
+}
+
+.active-tab {
+  color: #f2f2f3;
+}
+
+.active-tab::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #4c4cff;
+  box-shadow: inset 0px -2px 0px #4c4cff;
+}
+
+/* Плавная прокрутка */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Отступ от верхней части для навигации */
+}
+
+/* Убедитесь, что контейнер имеет фиксированную высоту и скролл */
+.ingredients-scroll {
+  overflow-y: auto;
+  padding: 0 16px 20px;
+  flex: 1;
+  height: calc(100vh - 280px); /* Или другая подходящая высота */
+  scroll-behavior: smooth;
+}
+
+/* Добавляем индикатор загрузки для табов */
+.tab:active {
+  transform: scale(0.98);
+}
+
+/* Theme selector styles */
+.theme-selector {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.theme-option {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px 20px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-primary);
+  border-radius: 40px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.theme-option:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow);
+}
+
+.theme-option.active {
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  color: #0a0a2a;
+  border-color: transparent;
+  box-shadow: var(--glow-strong);
+}
+
+.theme-option.space {
+  background: linear-gradient(135deg, #00ffff20, #ff00ff20);
+  border-color: #ff00ff;
+}
+
+.theme-option.space.active {
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #2f2f37;
+  border-top: 4px solid #4c4cff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+.ingredient-card {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ingredient-name {
+  max-width: 150px;
+  font-size: 11px;
+}
+
+.constructor-row {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.row-name {
+  width: 100%;
+  order: 3;
+}
+
+.row-price {
+  order: 2;
+}
+
+.remove-btn {
+  order: 1;
+}
+/* Анимации */
+
+/* Улучшенная анимация для искорок */
+@keyframes magicSparkle {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.8;
+    background: radial-gradient(circle, #ffd700, #ff6b6b);
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Анимация появления ингредиента */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+/* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
+
+/* Планшеты (до 1024px) */
+@media (max-width: 1024px) {
+  .main-layout {
+    gap: 30px;
+    padding: 0 16px;
+  }
+
+  .ingredients-section,
+  .constructor-section {
+    min-width: 400px;
+    max-width: 500px;
+  }
+}
+
+/* Планшеты и большие телефоны (до 768px) */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+
+  .ingredients-section,
+  .constructor-section {
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 500px;
+  }
+
+  .ingredients-section {
+    height: 600px;
+  }
+
+  .constructor-section {
+    height: auto;
+    min-height: 400px;
+    padding: 16px;
+  }
+
+  .main-title {
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 16px;
+  }
+
+  .tabs {
+    margin-bottom: 16px;
+  }
+
+  .tab {
+    padding: 12px 0;
+    font-size: 14px;
+  }
+
+  .ingredients-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .category-title {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 24px 0 16px 0;
+  }
+
+  .constructor-list {
+    gap: 12px;
+  }
+
+  .fillings-scroll {
+    max-height: 300px;
+    gap: 12px;
+  }
+
+  .price-digit {
+    font-size: 36px;
+    line-height: 32px;
+  }
+
+  .order-btn {
+    padding: 16px 32px;
+    font-size: 14px;
+  }
+
+  .order-name {
+    font-size: 20px;
+  }
+
+  .order-info-message p {
+    font-size: 16px;
+  }
+
+  .stats-board {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .orders-stats {
+    width: 100%;
+  }
+}
+
+/* Мобильные телефоны (до 480px) */
+@media (max-width: 480px) {
+  .app-container {
+    min-height: 100vh;
+  }
+
+  .main-layout {
+    gap: 20px;
+    margin: 16px auto;
+    padding: 0 12px;
+  }
+
+  .ingredients-section {
+    height: 550px;
+    padding: 12px 0 0 0;
+  }
+
+  .constructor-section {
+    padding: 12px;
+    min-height: 350px;
+  }
+
+  .main-title {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 12px;
+    padding: 0 12px;
+  }
+
+  .tab {
+    padding: 10px 0;
+    font-size: 12px;
+  }
+
+  .ingredients-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .ingredients-scroll {
+    padding: 0 12px 16px;
+    height: calc(100vh - 250px);
+  }
+
+  .category-title {
+    font-size: 18px;
+    line-height: 24px;
+    margin: 20px 0 12px 0;
+  }
+
+  .constructor-list {
+    gap: 10px;
+  }
+
+  .fillings-scroll {
+    max-height: 250px;
+    gap: 10px;
+  }
+
+  .price-digit {
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .order-btn {
+    padding: 12px 24px;
+    font-size: 13px;
+  }
+
+  .order-info {
+    gap: 6px;
+  }
+
+  .order-name {
+    font-size: 18px;
+  }
+
+  .order-ingredients {
+    gap: 6px;
+  }
+
+  .ingredient-preview {
+    width: 48px;
+    height: 48px;
+  }
+
+  .more-ingredients span {
+    font-size: 12px;
+  }
+
+  .order-info-message p {
+    font-size: 14px;
+  }
+
+  .order-info-message small {
+    font-size: 10px;
+  }
+
+  .order-cancel-btn,
+  .order-submit-btn,
+  .order-close-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .stats-board {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .stats-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .stats-number {
+    font-size: 24px;
+  }
+
+  .theme-option {
+    min-width: 80px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  .row-name {
+    font-size: 12px;
+  }
+}
+
+/* Очень маленькие экраны (до 350px) */
+@media (max-width: 350px) {
+  .main-layout {
+    gap: 16px;
+    padding: 0 8px;
+  }
+
+  .main-title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .tab {
+    padding: 8px 0;
+    font-size: 11px;
+  }
+
+  .category-title {
+    font-size: 16px;
+    margin: 16px 0 10px 0;
+  }
+
+  .ingredients-grid {
+    gap: 10px;
+  }
+
+  .price-digit {
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .order-btn {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .order-name {
+    font-size: 16px;
+  }
+
+  .ingredient-preview {
+    width: 40px;
+    height: 40px;
+  }
+
+  .order-cancel-btn,
+  .order-submit-btn,
+  .order-close-btn {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .stats-title {
+    font-size: 18px;
+  }
+
+  .stats-number {
+    font-size: 20px;
+  }
+
+  .theme-option {
+    min-width: 70px;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Альбомная ориентация на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .ingredients-section {
+    height: 450px;
+  }
+
+  .fillings-scroll {
+    max-height: 180px;
+  }
+
+  .ingredients-scroll {
+    height: calc(100vh - 220px);
+  }
+
+  .constructor-section {
+    min-height: 300px;
+  }
+}
+
+/* Стилизация скроллбара для мобильных */
+@media (max-width: 768px) {
+  .ingredients-scroll::-webkit-scrollbar,
+  .fillings-scroll::-webkit-scrollbar,
+  .constructor-list::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .ingredients-scroll::-webkit-scrollbar-track,
+  .fillings-scroll::-webkit-scrollbar-track,
+  .constructor-list::-webkit-scrollbar-track {
+    background: #131316;
+    border-radius: 10px;
+  }
+
+  .ingredients-scroll::-webkit-scrollbar-thumb,
+  .fillings-scroll::-webkit-scrollbar-thumb,
+  .constructor-list::-webkit-scrollbar-thumb {
+    background: #4c4cff;
+    border-radius: 10px;
+  }
+}
+
+/* Для устройств с сенсорным экраном */
+@media (hover: none) and (pointer: coarse) {
+  .order-btn:hover {
+    transform: none;
+    opacity: 1;
+  }
+
+  .order-btn:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+
+  .tab:hover {
+    color: #8585ad;
+  }
+
+  .tab:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Для экранов с небольшой высотой */
+@media (max-height: 600px) {
+  .ingredients-section {
+    height: 400px;
+  }
+
+  .ingredients-scroll {
+    height: calc(100vh - 180px);
+  }
+
+  .fillings-scroll {
+    max-height: 150px;
+  }
+}
+
+/* Для устройств с высоким разрешением */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .order-btn {
+    font-weight: 500;
+  }
+
+  .tab {
+    font-weight: 500;
+  }
+}
+
+/* Плавные переходы для всех устройств */
+@media (prefers-reduced-motion: no-preference) {
+  .order-btn,
+  .tab,
+  .theme-option,
+  .order-cancel-btn,
+  .order-submit-btn,
+  .order-close-btn {
+    transition: all 0.2s ease;
+  }
+}
+/* @media (max-width: 1200px) {
+  .main-layout {
+    gap: 20px;
+  }
+  .ingredients-section,
+  .constructor-section {
+    min-width: 480px;
+  }
+  .order-feed-layout {
+    flex-direction: column;
+  }
+
+  .orders-stats {
+    width: 100%;
+  }
+}
+@media (max-width: 1050px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .ingredients-section,
+  .constructor-section {
+    width: 100%;
+    max-width: 700px;
+  }
+  .profile-btn {
+    margin-left: 0;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .nav-panel {
+    padding: 12px 16px;
+    height: auto;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-panel.mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .main-layout {
+    flex-direction: column;
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .ingredients-section,
+  .constructor-section {
+    min-width: auto;
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+  }
+
+  .main-title {
+    font-size: 24px;
+    padding: 0 12px;
+  }
+
+  .tabs {
+    flex-direction: row;
+  }
+
+  .tab {
+    font-size: 14px;
+    padding: 12px 0;
+  }
+
+  .ingredients-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ingredient-card {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #1c1c21;
+    border-radius: 40px;
+  }
+
+  .ingredient-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .ingredient-price {
+    font-size: 20px;
+  }
+
+  .ingredient-name {
+    font-size: 12px;
+    max-width: 120px;
+  }
+
+  .constructor-row {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .row-name {
+    font-size: 12px;
+  }
+
+  .row-price {
+    font-size: 20px;
+  }
+
+  .order-info {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .price-digit {
+    font-size: 32px;
+  }
+
+  .order-btn {
+    padding: 14px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .notification-toast {
+    top: auto;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .notification-content {
+    padding: 12px 16px;
+  }
+
+  .notification-text {
+    font-size: 12px;
+  }
+  .ingredients-grid {
+    grid-template-columns: 1fr;
+  }
+  .constructor-section {
+  flex: 1;
+ 
+  max-width: 600px;
+  background: #131316;
+  border: 2px solid #4c4cff;
+  padding: 20px 16px 32px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 912px;
+}
+  .constructor-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .row-name {
+    font-size: 13px;
+  }
+}
+
+
+@media (max-width: 350px) {
+  .main-title {
+    font-size: 20px;
+  }
+
+  .ingredient-name {
+    font-size: 10px;
+  }
+
+  .ingredient-price {
+    font-size: 16px;
+  }
+
+  .price-digit {
+    font-size: 24px;
+  }
+
+  .order-btn {
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+
+  .constructor-row {
+    padding: 10px 12px;
+  }
+
+  .row-name {
+    font-size: 10px;
+  }
+
+  .row-price {
+    font-size: 16px;
+  }
+
+  .theme-option {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .setting-item {
+    font-size: 11px;
+  }
+} */

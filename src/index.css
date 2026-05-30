@@ -1,0 +1,264 @@
+/* index.css */
+
+/* Сброс стилей */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Базовые переменные - теперь космическая тема по умолчанию */
+:root {
+  --bg-primary: #0a0a2a;
+  --bg-secondary: #1a1a3a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0c0;
+  --border-color: #00ffff;
+  --border-color-hover: #ff00ff;
+  --hover-bg: rgba(0, 255, 255, 0.1);
+  --card-bg: #0a0a2a;
+  --input-bg: #1a1a3a;
+  --glow: 0 0 10px rgba(0, 255, 255, 0.5);
+  --glow-strong: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.4);
+}
+
+/* Тело приложения с космическим фоном */
+body {
+  background: linear-gradient(135deg, #0a0a2a 0%, #1a0033 100%);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Звездный фон для body */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 50px 160px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 160px 120px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 200px 250px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 300px 50px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 400px 180px, #fff, rgba(0, 0, 0, 0));
+  background-repeat: no-repeat;
+  background-size: 800px 800px;
+  opacity: 0.8;
+  animation: starsMove 40s linear infinite;
+}
+
+/* Единая анимация звезд */
+@keyframes starsMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-400px);
+  }
+}
+
+/* Классы для переключения тем */
+body.theme-dark {
+  --bg-primary: #1c1c21;
+  --bg-secondary: #2a2a35;
+  --text-primary: #f2f2f3;
+  --text-secondary: #8585ad;
+  --border-color: #4c4cff;
+  --border-color-hover: #6e6eff;
+  --hover-bg: rgba(76, 76, 255, 0.1);
+  --glow: none;
+  --glow-strong: none;
+}
+
+body.theme-light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f9;
+  --text-primary: #1c1c21;
+  --text-secondary: #6e6e8a;
+  --border-color: #4c4cff;
+  --border-color-hover: #6e6eff;
+  --hover-bg: rgba(76, 76, 255, 0.05);
+  --glow: none;
+  --glow-strong: none;
+}
+
+body.theme-space {
+  --bg-primary: #0a0a2a;
+  --bg-secondary: #1a1a3a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0c0;
+  --border-color: #00ffff;
+  --border-color-hover: #ff00ff;
+  --hover-bg: rgba(0, 255, 255, 0.1);
+  --glow: 0 0 10px rgba(0, 255, 255, 0.5);
+  --glow-strong: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.4);
+}
+
+/* Исправленный селектор для app-container */
+.app-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(2px 2px at 20px 30px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 50px 160px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 160px 120px, #fff, rgba(0, 0, 0, 0));
+  background-repeat: no-repeat;
+  background-size: 600px 600px;
+  opacity: 0.8;
+  animation: starsMove2 30s linear infinite;
+}
+
+/* Вторая анимация звезд для app-container */
+@keyframes starsMove2 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-200px);
+  }
+}
+
+/* Nebula effect - исправлен селектор */
+body.theme-space .ingredients-section,
+body.theme-space .constructor-section,
+body.theme-space .order-card,
+body.theme-space .profile-sidebar,
+body.theme-space .profile-content {
+  position: relative;
+  overflow: hidden;
+}
+
+body.theme-space .ingredients-section::before,
+body.theme-space .constructor-section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+  animation: nebulaRotate 15s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes nebulaRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Neon borders for space theme - исправлен селектор */
+body.theme-space .nav-panel,
+body.theme-space .ingredients-section,
+body.theme-space .constructor-section,
+body.theme-space .order-card,
+body.theme-space .profile-sidebar,
+body.theme-space .profile-content {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff) 1;
+  animation: borderPulse 2s ease-in-out infinite;
+}
+
+/* Единая анимация borderPulse */
+@keyframes borderPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 10px rgba(255, 0, 255, 0.3);
+  }
+}
+
+/* Glowing text for space theme - исправлен селектор */
+body.theme-space .main-title,
+body.theme-space .logoText,
+body.theme-space .category-title,
+body.theme-space .order-name,
+body.theme-space .profile-avatar h3 {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  background: linear-gradient(135deg, #ffffff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cosmic button glow - исправлен селектор */
+body.theme-space .order-btn,
+body.theme-space .order-submit-btn,
+body.theme-space .save-btn {
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.4);
+  }
+}
+
+body.theme-space .order-btn:hover {
+  transform: scale(1.05);
+  animation: none;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+}
+
+.filling-item {
+  transition: all 0.2s ease;
+}
+
+.fade-in {
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #2F2F37;
+}
+
+::-webkit-scrollbar-track {
+  background: #2F2F37;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8585AD;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4c4cff;
+}
